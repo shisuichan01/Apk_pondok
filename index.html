@@ -2,9 +2,9 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
-  <title>Sistem Pondok Pesantren Al-Hidayah</title>
+  <title>Sistem Pondok Pesantren</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/login.css">
   <link rel="stylesheet" href="css/app.css">
@@ -37,7 +37,6 @@
 </div>
 
 <div id="app-shell" style="display: none;">
-  <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <div class="sidebar-logo"><i class="fas fa-chalkboard-user"></i><span>Pesantren<span>Hub</span></span></div>
@@ -64,12 +63,11 @@
   </aside>
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-  <!-- Main Content -->
   <main class="main-content">
     <header class="top-bar">
       <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
       <div class="top-bar-title" id="page-title">Dashboard</div>
-      <div style="display: flex; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 8px;">
         <button id="dark-mode-toggle" class="dark-mode-btn"><i class="fas fa-moon"></i></button>
         <div class="user-menu">
           <div class="user-avatar" id="user-avatar-text">AD</div>
@@ -93,22 +91,22 @@
           <div class="col-md-6"><div class="card"><div class="card-header"><h3><i class="fas fa-calendar-alt"></i> SPP Bulan Ini</h3></div><div class="card-body"><div class="progress-section"><div class="progress-label"><span>Tingkat Pembayaran SPP</span><span id="spp-progress-label">0%</span></div><div class="progress"><div class="progress-bar" id="spp-progress-bar" style="width:0%;"></div></div></div></div></div></div>
         </div>
         <div class="row">
-          <div class="col-md-6"><div class="card"><div class="card-header"><h3><i class="fas fa-history"></i> Transaksi Terbaru</h3><a href="#" onclick="App.navigateTo('keuangan'); return false;" class="link-sm">Lihat semua</a></div><div class="card-body p-0"><table class="table table-sm"><thead><tr><th>Tanggal</th><th>Keterangan</th><th>Status</th><th>Jumlah</th></tr></thead><tbody id="dashboard-tx-body"></tbody></table></div></div></div>
+          <div class="col-md-6"><div class="card"><div class="card-header"><h3><i class="fas fa-history"></i> Transaksi Terbaru</h3><a href="#" onclick="App.navigateTo('keuangan'); return false;" class="link-sm">Lihat semua</a></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-sm"><thead><tr><th>Tanggal</th><th>Keterangan</th><th>Status</th><th>Jumlah</th></tr></thead><tbody id="dashboard-tx-body"></tbody></table></div></div></div></div>
           <div class="col-md-6"><div class="card"><div class="card-header"><h3><i class="fas fa-user-plus"></i> Santri Baru</h3><a href="#" onclick="App.navigateTo('santri'); return false;" class="link-sm">Lihat semua</a></div><div class="card-body" id="dashboard-santri-list"></div></div></div>
         </div>
       </div>
 
       <!-- Santri Page -->
       <div id="page-santri" class="page">
-        <div class="page-header"><h2><i class="fas fa-users"></i> Manajemen Santri</h2><button class="btn btn-primary" onclick="SantriModule.showTambah()"><i class="fas fa-plus"></i> Tambah Santri</button></div>
+        <div class="page-header"><h2><i class="fas fa-users"></i> Manajemen Santri</h2><button class="btn btn-primary" id="btn-tambah-santri"><i class="fas fa-plus"></i> Tambah Santri</button></div>
         <div class="card"><div class="card-body"><div class="filter-bar"><div class="filter-group"><i class="fas fa-search"></i><input type="text" id="santri-search" placeholder="Cari nama, NIS, atau asal daerah..." class="form-control"></div><select id="santri-filter-status" class="form-control"><option value="">Semua Status</option><option value="aktif">Aktif</option><option value="alumni">Alumni</option><option value="keluar">Keluar</option></select><select id="santri-filter-kelas" class="form-control"><option value="">Semua Kelas</option><option value="VII">Kelas VII</option><option value="VIII">Kelas VIII</option><option value="IX">Kelas IX</option></select></div><div class="table-responsive"><table class="table"><thead><tr><th>NIS</th><th>Nama Santri</th><th>Kelas</th><th>Kamar</th><th>Asal Daerah</th><th>JK</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="santri-tbody"></tbody></table><div class="table-footer" id="santri-count"></div></div></div></div>
       </div>
 
       <!-- Keuangan Page -->
       <div id="page-keuangan" class="page">
-        <div class="page-header"><h2><i class="fas fa-coins"></i> Kas Pondok</h2><button class="btn btn-primary" onclick="KeuanganModule.showTambah()"><i class="fas fa-plus"></i> Tambah Transaksi</button></div>
+        <div class="page-header"><h2><i class="fas fa-coins"></i> Kas Pondok</h2><button class="btn btn-primary" id="btn-tambah-keuangan"><i class="fas fa-plus"></i> Tambah Transaksi</button></div>
         <div class="stats-row"><div class="stat-mini"><span>Total Pemasukan</span><strong id="keu-total-pemasukan">Rp 0</strong></div><div class="stat-mini"><span>Total Pengeluaran</span><strong id="keu-total-pengeluaran">Rp 0</strong></div><div class="stat-mini"><span>Saldo</span><strong id="keu-saldo">Rp 0</strong></div></div>
-        <div class="card"><div class="card-body"><div class="filter-bar"><div class="filter-group"><i class="fas fa-search"></i><input type="text" id="keu-search" placeholder="Cari transaksi..." class="form-control"></div><select id="keu-filter-jenis" class="form-control"><option value="">Semua</option><option value="pemasukan">Pemasukan</option><option value="pengeluaran">Pengeluaran</option></select><input type="month" id="keu-filter-bulan" class="form-control"><button class="btn btn-sm btn-outline" onclick="KeuanganModule.resetFilter()">Reset</button></div><div class="table-responsive"><table class="table"><thead><tr><th>Tanggal</th><th>Keterangan</th><th>Jenis</th><th>Jumlah</th><th>Aksi</th></tr></thead><tbody id="keu-tbody"></tbody></table></div></div></div>
+        <div class="card"><div class="card-body"><div class="filter-bar"><div class="filter-group"><i class="fas fa-search"></i><input type="text" id="keu-search" placeholder="Cari transaksi..." class="form-control"></div><select id="keu-filter-jenis" class="form-control"><option value="">Semua</option><option value="pemasukan">Pemasukan</option><option value="pengeluaran">Pengeluaran</option></select><input type="month" id="keu-filter-bulan" class="form-control"><button class="btn btn-sm btn-outline" id="reset-filter-keu">Reset</button></div><div class="table-responsive"><table class="table"><thead><tr><th>Tanggal</th><th>Keterangan</th><th>Jenis</th><th>Jumlah</th><th>Aksi</th></tr></thead><tbody id="keu-tbody"></tbody></table></div></div></div>
       </div>
 
       <!-- SPP Page -->
@@ -137,22 +135,22 @@
               <div class="form-group"><label>Telepon</label><input type="text" id="set-telepon" class="form-control"></div>
               <div class="form-group"><label>Tahun Ajaran</label><input type="text" id="set-tahunAjaran" class="form-control"></div>
               <div class="form-group"><label>Nominal SPP</label><input type="number" id="set-nominalSPP" class="form-control"></div>
-              <button class="btn btn-primary" onclick="PengaturanModule.simpan()"><i class="fas fa-save"></i> Simpan Pengaturan</button>
+              <button class="btn btn-primary" id="simpan-pengaturan"><i class="fas fa-save"></i> Simpan Pengaturan</button>
             </div></div>
           </div>
           <div class="col-md-6">
             <div class="card"><div class="card-header"><h3>Data & Sistem</h3></div><div class="card-body">
               <p class="text-muted">Reset semua data ke kondisi kosong.</p>
-              <button class="btn btn-danger" onclick="PengaturanModule.resetData()"><i class="fas fa-database"></i> Reset Data Kosong</button>
+              <button class="btn btn-danger" id="reset-data"><i class="fas fa-database"></i> Reset Data Kosong</button>
               <hr>
               <p class="text-muted">Muat data contoh untuk mencoba fitur aplikasi.</p>
-              <button class="btn btn-primary" onclick="PengaturanModule.loadDemoData()"><i class="fas fa-chart-line"></i> Muat Data Demo</button>
+              <button class="btn btn-primary" id="load-demo"><i class="fas fa-chart-line"></i> Muat Data Demo</button>
             </div></div>
             <div class="card mt-3"><div class="card-header"><h3><i class="fas fa-cloud-upload-alt"></i> Backup & Restore</h3></div><div class="card-body">
               <p class="text-muted">Backup data ke file JSON atau pulihkan dari backup sebelumnya.</p>
               <div class="d-flex gap-2" style="flex-wrap:wrap;">
-                <button class="btn btn-primary" onclick="Backup.exportToFile()"><i class="fas fa-download"></i> Download Backup</button>
-                <label class="btn btn-secondary" style="cursor:pointer;"><i class="fas fa-upload"></i> Restore Backup<input type="file" id="restore-file" accept=".json" style="display:none;" onchange="Backup.importFromFile(this.files[0])"></label>
+                <button class="btn btn-primary" id="backup-download"><i class="fas fa-download"></i> Download Backup</button>
+                <label class="btn btn-secondary" style="cursor:pointer;"><i class="fas fa-upload"></i> Restore Backup<input type="file" id="restore-file" accept=".json" style="display:none;"></label>
               </div>
               <small class="text-muted" style="display:block; margin-top:10px;">💡 Data otomatis tersimpan di browser.</small>
             </div></div>
@@ -164,9 +162,9 @@
 </div>
 
 <!-- Modals -->
-<div id="modal-santri" class="modal-overlay"><div class="modal"><div class="modal-header"><h3 id="modal-santri-title">Tambah Santri</h3><button class="modal-close">&times;</button></div><div class="modal-body"><form id="form-santri"><div class="row"><div class="col-md-6"><div class="form-group"><label>NIS *</label><input type="text" id="santri-nis" class="form-control" required></div></div><div class="col-md-6"><div class="form-group"><label>Nama Lengkap *</label><input type="text" id="santri-nama" class="form-control" required></div></div></div><div class="row"><div class="col-md-4"><div class="form-group"><label>Kelas</label><select id="santri-kelas" class="form-control"><option>VII</option><option>VIII</option><option>IX</option></select></div></div><div class="col-md-4"><div class="form-group"><label>Kamar</label><input type="text" id="santri-kamar" class="form-control"></div></div><div class="col-md-4"><div class="form-group"><label>Jenis Kelamin</label><select id="santri-jenisKelamin" class="form-control"><option value="L">Laki-laki</option><option value="P">Perempuan</option></select></div></div></div><div class="row"><div class="col-md-6"><div class="form-group"><label>Asal Daerah</label><input type="text" id="santri-asalDaerah" class="form-control"></div></div><div class="col-md-6"><div class="form-group"><label>Tanggal Masuk</label><input type="date" id="santri-tanggalMasuk" class="form-control"></div></div></div><div class="row"><div class="col-md-6"><div class="form-group"><label>Nama Wali</label><input type="text" id="santri-wali" class="form-control"></div></div><div class="col-md-6"><div class="form-group"><label>Kontak Wali</label><input type="text" id="santri-kontakWali" class="form-control"></div></div></div><div class="form-group"><label>Status</label><select id="santri-status" class="form-control"><option value="aktif">Aktif</option><option value="alumni">Alumni</option><option value="keluar">Keluar</option></select></div></form></div><div class="modal-footer"><button class="btn btn-secondary" data-dismiss="modal">Batal</button><button class="btn btn-primary" onclick="SantriModule.simpan()">Simpan</button></div></div></div>
+<div id="modal-santri" class="modal-overlay"><div class="modal"><div class="modal-header"><h3 id="modal-santri-title">Tambah Santri</h3><button class="modal-close">&times;</button></div><div class="modal-body"><form id="form-santri"><div class="row"><div class="col-md-6"><div class="form-group"><label>NIS *</label><input type="text" id="santri-nis" class="form-control" required></div></div><div class="col-md-6"><div class="form-group"><label>Nama Lengkap *</label><input type="text" id="santri-nama" class="form-control" required></div></div></div><div class="row"><div class="col-md-4"><div class="form-group"><label>Kelas</label><select id="santri-kelas" class="form-control"><option>VII</option><option>VIII</option><option>IX</option></select></div></div><div class="col-md-4"><div class="form-group"><label>Kamar</label><input type="text" id="santri-kamar" class="form-control"></div></div><div class="col-md-4"><div class="form-group"><label>Jenis Kelamin</label><select id="santri-jenisKelamin" class="form-control"><option value="L">Laki-laki</option><option value="P">Perempuan</option></select></div></div></div><div class="row"><div class="col-md-6"><div class="form-group"><label>Asal Daerah</label><input type="text" id="santri-asalDaerah" class="form-control"></div></div><div class="col-md-6"><div class="form-group"><label>Tanggal Masuk</label><input type="date" id="santri-tanggalMasuk" class="form-control"></div></div></div><div class="row"><div class="col-md-6"><div class="form-group"><label>Nama Wali</label><input type="text" id="santri-wali" class="form-control"></div></div><div class="col-md-6"><div class="form-group"><label>Kontak Wali</label><input type="text" id="santri-kontakWali" class="form-control"></div></div></div><div class="form-group"><label>Status</label><select id="santri-status" class="form-control"><option value="aktif">Aktif</option><option value="alumni">Alumni</option><option value="keluar">Keluar</option></select></div></form></div><div class="modal-footer"><button class="btn btn-secondary modal-batal" data-dismiss="modal">Batal</button><button class="btn btn-primary" id="simpan-santri">Simpan</button></div></div></div>
 
-<div id="modal-keuangan" class="modal-overlay"><div class="modal"><div class="modal-header"><h3 id="modal-keu-title">Tambah Transaksi</h3><button class="modal-close">&times;</button></div><div class="modal-body"><form><div class="form-group"><label>Tanggal</label><input type="date" id="keu-tanggal" class="form-control"></div><div class="form-group"><label>Jenis</label><select id="keu-jenis" class="form-control"><option value="pemasukan">Pemasukan</option><option value="pengeluaran">Pengeluaran</option></select></div><div class="form-group"><label>Kategori</label><select id="keu-kategori" class="form-control"><option>SPP</option><option>Donasi</option><option>Infaq</option><option>Operasional</option><option>Konsumsi</option><option>Listrik & Air</option><option>Gaji</option><option>Lain-lain</option></select></div><div class="form-group"><label>Keterangan</label><textarea id="keu-keterangan" class="form-control" rows="2"></textarea></div><div class="form-group"><label>Jumlah (Rp)</label><input type="number" id="keu-jumlah" class="form-control"></div></form></div><div class="modal-footer"><button class="btn btn-secondary" data-dismiss="modal">Batal</button><button class="btn btn-primary" onclick="KeuanganModule.simpan()">Simpan</button></div></div></div>
+<div id="modal-keuangan" class="modal-overlay"><div class="modal"><div class="modal-header"><h3 id="modal-keu-title">Tambah Transaksi</h3><button class="modal-close">&times;</button></div><div class="modal-body"><form><div class="form-group"><label>Tanggal</label><input type="date" id="keu-tanggal" class="form-control"></div><div class="form-group"><label>Jenis</label><select id="keu-jenis" class="form-control"><option value="pemasukan">Pemasukan</option><option value="pengeluaran">Pengeluaran</option></select></div><div class="form-group"><label>Kategori</label><select id="keu-kategori" class="form-control"><option>SPP</option><option>Donasi</option><option>Infaq</option><option>Operasional</option><option>Konsumsi</option><option>Listrik & Air</option><option>Gaji</option><option>Lain-lain</option></select></div><div class="form-group"><label>Keterangan</label><textarea id="keu-keterangan" class="form-control" rows="2"></textarea></div><div class="form-group"><label>Jumlah (Rp)</label><input type="number" id="keu-jumlah" class="form-control"></div></form></div><div class="modal-footer"><button class="btn btn-secondary modal-batal" data-dismiss="modal">Batal</button><button class="btn btn-primary" id="simpan-keuangan">Simpan</button></div></div></div>
 
 <div id="toast-container"></div>
 
@@ -181,4 +179,4 @@
 <script src="js/backup.js"></script>
 <script src="js/main.js"></script>
 </body>
-  </html>
+</html>

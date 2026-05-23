@@ -109,13 +109,12 @@ const KeuanganModule = {
     },
 
     resetFilter() {
-        this.filter = { search: '', jenis: '', bulan: '' };
-        const search = document.getElementById('keu-search');
-        const jenis = document.getElementById('keu-filter-jenis');
-        const bulan = document.getElementById('keu-filter-bulan');
-        if (search) search.value = '';
-        if (jenis) jenis.value = '';
-        if (bulan) bulan.value = '';
-        this.renderTable();
-    }
-};
+    this.filter = { search: '', jenis: '', bulan: '' };
+    const search = document.getElementById('keu-search');
+    const jenis = document.getElementById('keu-filter-jenis');
+    const bulan = document.getElementById('keu-filter-bulan');
+    if (search) search.value = '';
+    if (jenis) jenis.value = '';
+    if (bulan) bulan.value = '';
+    this.renderTable();
+}
